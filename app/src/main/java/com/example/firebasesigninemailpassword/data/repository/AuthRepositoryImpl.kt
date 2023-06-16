@@ -2,17 +2,14 @@ package com.example.firebasesigninemailpassword.data.repository
 
 import com.example.firebasesigninemailpassword.domain.model.Response
 import com.example.firebasesigninemailpassword.domain.repository.AuthRepository
-import com.example.firebasesigninemailpassword.domain.repository.AuthState
 import com.example.firebasesigninemailpassword.domain.repository.ReloadUserResponse
 import com.example.firebasesigninemailpassword.domain.repository.RevokeAccessResponse
 import com.example.firebasesigninemailpassword.domain.repository.SendEmailVerification
 import com.example.firebasesigninemailpassword.domain.repository.SignInResponse
 import com.example.firebasesigninemailpassword.domain.repository.SignUpResponse
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.stateIn
@@ -21,9 +18,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthRepositoryImpl @Inject constructor(
-    private val auth : FirebaseAuth
-) : AuthRepository {
+class AuthRepositoryImpl
+@Inject constructor(private val auth: FirebaseAuth): AuthRepository {
     override val currentUser
         get() = auth.currentUser
 
